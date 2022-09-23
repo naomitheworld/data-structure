@@ -21,13 +21,13 @@ public class EVA_1_22_FIBONACCI {
         System.out.println("------SERIE FIBONACCI------");
         System.out.println("Hasta que posicion?:");
         posicion = s.nextInt();
-        System.out.print(fibonacci(posicion) + " - ");
+        for (int i = 1; i <= posicion; i++) {        
+            System.out.print(fibonacci(i) + " - ");
+        }
     }
     
     public static int fibonacci(int p) {
-        if (p == 0) {
-            return 0;
-        } else if (p == 1) {
+        if (p <= 1) {
             return 1;
         } else {
             return (fibonacci(p - 1) + fibonacci(p - 2));
