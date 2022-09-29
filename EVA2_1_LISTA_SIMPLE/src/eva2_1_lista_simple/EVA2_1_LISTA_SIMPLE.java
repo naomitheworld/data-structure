@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+to insert at the beginning of the list -> inicio = nvoNodo.next()
  */
 package eva2_1_lista_simple;
 
@@ -23,7 +21,12 @@ public class EVA2_1_LISTA_SIMPLE {
         miLista.add(40);
         miLista.add(50);
         miLista.add(60);
-        miLista.imprimir();
+        //miLista.imprimir();
+        //int [] arreglo = new int[1000000];
+        for (int i = 0; i < 1000000; i++) { // O(n^2) usando while en add
+            miLista.add(1000);
+        }
+        System.out.println("Conteo de nodos: " + miLista.size());
     }
     
 }

@@ -11,35 +11,58 @@ package eva2_1_lista_simple;
 public class Lista {
 
     private Nodo inicio;
-// poe default la lista esta vacia
+    private Nodo fin;
+// por default la lista esta vacia
 
     public Lista() {
         this.inicio = null; // no hay nodos en la lista
+        this.fin = null;
     }
 
     public void imprimir() {
         Nodo temp = inicio;
 // como muevo a temp?
-        while (temp.getSiguiente() != null) {
+        while (temp != null) {
             System.out.print(temp.getValor() + " - ");
             temp = temp.getSiguiente();
         }
     }
 
     // agregar un nodo al final de la lista
+    // solucion 1: O(n^2)
     public void add(int valor) {
         Nodo nvoNodo = new Nodo(valor);
         // verificar si hay nodos en la lista
         if (inicio == null) { // no hay nodos en la lista
-            inicio = new Nodo();
+            inicio = nvoNodo;
+            fin = nvoNodo;
         } else { // hay nodos en la lista
             // hay que movernos por la lista 
             // usando un nodo temporal hasta el ultimo nodo de la lista
-            Nodo temp = inicio;
-            while (temp.getSiguiente()!= null) {
-                temp = temp.getSiguiente();
-            }
-            temp.setSiguiente(nvoNodo);
+            /*Nodo temp = inicio;
+             while (temp.getSiguiente() != null) {
+             temp = temp.getSiguiente();
+             }
+             temp.setSiguiente(nvoNodo);*/
+            fin.setSiguiente(nvoNodo);
+            fin = nvoNodo;
         }
+    }
+    public int size(){
+        int c = 0;
+        Nodo temp = inicio;
+        while (temp != null) {
+            c++;
+            temp = temp.getSiguiente();
+        }
+        return c;
+    }
+    
+    public void addIn(int valor, int p){
+        /*que debemos validar?
+            insertar en una posicion no valida
+                posiciones negativas
+                posiciones mayores a la cantidad de elementos
+        */
     }
 }
