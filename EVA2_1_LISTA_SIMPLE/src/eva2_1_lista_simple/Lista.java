@@ -48,7 +48,8 @@ public class Lista {
             fin = nvoNodo;
         }
     }
-    public int size(){
+
+    public int size() {
         int c = 0;
         Nodo temp = inicio;
         while (temp != null) {
@@ -57,12 +58,32 @@ public class Lista {
         }
         return c;
     }
-    
-    public void addIn(int valor, int p){
+
+    public void addIn(int valor, int p) throws Exception {
+        int t = size();
+        Nodo nvoNodo = new Nodo(valor);
         /*que debemos validar?
-            insertar en una posicion no valida
-                posiciones negativas
-                posiciones mayores a la cantidad de elementos
-        */
+         insertar en una posicion no valida
+         posiciones negativas
+         posiciones mayores a la cantidad de elementos
+         */
+        if (p < 0) {  // si es negativo, lanza un error
+            throw new Exception("No puede insertarse un nodo en una posición negativa");
+        } else if (p >= t) { //posiciones mayores a la cantidad de elementos
+            throw new Exception(p + " no es una posición válida en la lista");
+        } else {
+            if (p == 0) {
+                nvoNodo.setSiguiente(inicio);
+                inicio = nvoNodo;
+            } else {
+                Nodo temp = new Nodo();
+                int c = 0;
+                while(c < (p - 1)){
+                    temp = temp.getSiguiente();
+                    c++;
+                }
+                System.out.println(temp.getValor() + " - ");
+            }
+        }
     }
 }
