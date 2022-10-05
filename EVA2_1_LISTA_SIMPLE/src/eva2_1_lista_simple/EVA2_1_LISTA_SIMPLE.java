@@ -29,6 +29,8 @@ public class EVA2_1_LISTA_SIMPLE {
             e.printStackTrace();
         }
         miLista.imprimir();
+        miLista.empty();
+        miLista.imprimir();
         //int [] arreglo = new int[1000000];
         /*for (int i = 0; i < 1000000; i++) { // O(n^2) usando while en add
             miLista.add(1000);

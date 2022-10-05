@@ -22,10 +22,15 @@ public class Lista {
     public void imprimir() {
         Nodo temp = inicio;
 // como muevo a temp?
-        while (temp != null) {
-            System.out.print(temp.getValor() + " - ");
-            temp = temp.getSiguiente();
+        if (inicio == null) {
+            System.err.println("Lista vacia");
+        } else {
+            while (temp != null) {
+                System.out.print(temp.getValor() + " - ");
+                temp = temp.getSiguiente();
+            }
         }
+        System.out.println("");
     }
 
     // agregar un nodo al final de la lista
@@ -61,7 +66,6 @@ public class Lista {
 
     public void addIn(int valor, int p) throws Exception {
         int t = size();
-        Nodo nvoNodo = new Nodo(valor);
         /*que debemos validar?
          insertar en una posicion no valida
          posiciones negativas
@@ -72,17 +76,56 @@ public class Lista {
         } else if (p >= t) { //posiciones mayores a la cantidad de elementos
             throw new Exception(p + " no es una posición válida en la lista");
         } else {
+            Nodo nvoNodo = new Nodo(valor);
             if (p == 0) {
                 nvoNodo.setSiguiente(inicio);
                 inicio = nvoNodo;
             } else {
-                Nodo temp = new Nodo();
+                Nodo temp = inicio;
                 int c = 0;
-                while(c < (p - 1)){
+                while (c <= (p - 1)) {
                     temp = temp.getSiguiente();
                     c++;
                 }
-                System.out.println(temp.getValor() + " - ");
+                nvoNodo.setSiguiente(temp.getSiguiente());
+                temp.setSiguiente(nvoNodo);
+            }
+        }
+    }
+
+    public void empty() {
+        inicio = null;
+        fin = null;
+    }
+    // if we delete the last node, we need to move the end node
+    // if the list has only one node its best we call empty 
+    // if its the first node we only change the start node
+    // if there are no nodes in the list, nothing is deleted
+    public void deleteIn(int p) throws Exception{
+        int t = size();
+        /*que debemos validar?
+         borrar en una posicion no valida
+         posiciones negativas
+         posiciones mayores a la cantidad de elementos
+         */
+        if (p < 0) {  // si es negativo, lanza un error
+            throw new Exception("No puede insertarse un nodo en una posición negativa");
+        } else if (p > t) { //posiciones mayores a la cantidad de elementos
+            throw new Exception(p + " no es una posición válida en la lista");
+        } else {
+            Nodo nvoNodo = new Nodo(valor);
+            if (p == 0) {
+                nvoNodo.setSiguiente(inicio);
+                inicio = nvoNodo;
+            } else {
+                Nodo temp = inicio;
+                int c = 0;
+                while (c <= (p - 1)) {
+                    temp = temp.getSiguiente();
+                    c++;
+                }
+                nvoNodo.setSiguiente(temp.getSiguiente());
+                temp.setSiguiente(nvoNodo);
             }
         }
     }
