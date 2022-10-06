@@ -3,6 +3,8 @@ to insert at the beginning of the list -> inicio = nvoNodo.next()
  */
 package eva2_1_lista_simple;
 
+import com.sun.istack.internal.logging.Logger;
+
 /**
  *
  * @author moviles
@@ -31,6 +33,12 @@ public class EVA2_1_LISTA_SIMPLE {
         miLista.imprimir();
         miLista.empty();
         miLista.imprimir();
+        
+        try{
+            miLista.deleteIn(0);
+        }catch(Exception e){
+            Logger.getLogger(null, null);
+        }
         //int [] arreglo = new int[1000000];
         /*for (int i = 0; i < 1000000; i++) { // O(n^2) usando while en add
             miLista.add(1000);

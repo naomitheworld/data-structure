@@ -97,11 +97,12 @@ public class Lista {
         inicio = null;
         fin = null;
     }
+
     // if we delete the last node, we need to move the end node
-    // if the list has only one node its best we call empty 
+    // if the list has only one node its best we call empty list
     // if its the first node we only change the start node
     // if there are no nodes in the list, nothing is deleted
-    public void deleteIn(int p) throws Exception{
+    public void deleteIn(int p) throws Exception {
         int t = size();
         /*que debemos validar?
          borrar en una posicion no valida
@@ -113,20 +114,40 @@ public class Lista {
         } else if (p > t) { //posiciones mayores a la cantidad de elementos
             throw new Exception(p + " no es una posición válida en la lista");
         } else {
-            Nodo nvoNodo = new Nodo(valor);
-            if (p == 0) {
-                nvoNodo.setSiguiente(inicio);
-                inicio = nvoNodo;
+            // piensen como programadores:
+            // que puede salir mal si:
+            if (t == 1) {
+                empty();
             } else {
-                Nodo temp = inicio;
-                int c = 0;
-                while (c <= (p - 1)) {
-                    temp = temp.getSiguiente();
-                    c++;
+                // borrar el primer nodo
+                // borrar nodo intermedio
+                // borrar el ultimo nodo
+                if (p == 0) {
+                    inicio = inicio.getSiguiente();
+                } else {
+                    Nodo temp = inicio;
+                    int c = 0;
+                    while (c <= (p - 1)) {
+                        temp = temp.getSiguiente();
+                        c++;
+                    }
+                    // ya estoy en el nodo previo
+                    Nodo next_obj = temp.getSiguiente();
+                    temp.setSiguiente(next_obj.getSiguiente());
+                    if (p == (t - 1)) {
+                        fin = temp;
+                    }
                 }
-                nvoNodo.setSiguiente(temp.getSiguiente());
-                temp.setSiguiente(nvoNodo);
             }
+        }
+    }
+
+    public int getValueAt(int p) throws Exception {
+        Nodo temp = inicio;
+        int c = 0;
+        while (c <= (p - 1)) {
+            temp = temp.getSiguiente();
+            c++;
         }
     }
 }
