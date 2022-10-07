@@ -12,11 +12,13 @@ public class Lista {
 
     private Nodo inicio;
     private Nodo fin;
+    private int c;
 // por default la lista esta vacia
 
     public Lista() {
         this.inicio = null; // no hay nodos en la lista
         this.fin = null;
+        this.c = 0;
     }
 
     public void imprimir() {
@@ -52,16 +54,17 @@ public class Lista {
             fin.setSiguiente(nvoNodo);
             fin = nvoNodo;
         }
+        c++;
     }
 
     public int size() {
-        int c = 0;
+        /*int c = 0;
         Nodo temp = inicio;
         while (temp != null) {
             c++;
             temp = temp.getSiguiente();
-        }
-        return c;
+        }*/
+        return this.c;
     }
 
     public void addIn(int valor, int p) throws Exception {
@@ -91,11 +94,13 @@ public class Lista {
                 temp.setSiguiente(nvoNodo);
             }
         }
+        this.c++;
     }
 
     public void empty() {
         inicio = null;
         fin = null;
+        c = 0;
     }
 
     // if we delete the last node, we need to move the end node
@@ -138,16 +143,27 @@ public class Lista {
                         fin = temp;
                     }
                 }
+                this.c--;
             }
         }
     }
 
-    public int getValueAt(int p) throws Exception {
-        Nodo temp = inicio;
-        int c = 0;
-        while (c <= (p - 1)) {
-            temp = temp.getSiguiente();
-            c++;
+    public int getValueAt(int p, int valor) throws Exception {
+        int t = size();
+        if (p < 0) {  // si es negativo, lanza un error
+            throw new Exception("No puede insertarse un nodo en una posición negativa");
+        } else if (p > t) { //posiciones mayores a la cantidad de elementos
+            throw new Exception(p + " no es una posición válida en la lista");
+        } else {
+            Nodo temp = inicio;
+            int c = 0;
+            while (c < p) {
+                temp = temp.getSiguiente();
+                c++;
+            }
+            // ya estoy en el nodo previo
+            valor = temp.getValor();
         }
+        return valor;
     }
 }
