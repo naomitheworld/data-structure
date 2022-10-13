@@ -5,6 +5,8 @@
  */
 package eva2_3_lista_doble;
 
+import com.sun.istack.internal.logging.Logger;
+
 /**
  *
  * @author moviles
@@ -18,10 +20,16 @@ public class EVA2_3_LISTA_DOBLE {
         // TODO code application logic here
         ListaDoble listaDoble = new ListaDoble();
         listaDoble.add(10);
-        listaDoble.add(10);
-        listaDoble.add(10);
-        listaDoble.add(10);
-        listaDoble.add(10);
+        listaDoble.add(20);
+        listaDoble.add(30);
+        listaDoble.add(40);
+        listaDoble.imprimir();
+        try{
+        listaDoble.addIn(25, 2);
+        }catch(Exception e){
+            Logger.getLogger(null, null);
+        }
+        listaDoble.imprimir();
     }
     
 }

@@ -84,16 +84,19 @@ public class ListaDoble {
             Nodo nvoNodo = new Nodo(valor);
             if (p == 0) {
                 nvoNodo.setSiguiente(inicio);
+                inicio.setPrevio(nvoNodo);
                 inicio = nvoNodo;
             } else {
                 Nodo temp = inicio;
                 int c = 0;
-                while (c <= (p - 1)) {
+                while (c < p) {
                     temp = temp.getSiguiente();
                     c++;
                 }
-                nvoNodo.setSiguiente(temp.getSiguiente());
-                temp.setSiguiente(nvoNodo);
+                nvoNodo.setSiguiente(temp);
+                nvoNodo.setPrevio(temp.getPrevio());
+                temp.getPrevio().setSiguiente(nvoNodo);
+                temp.setPrevio(nvoNodo);
             }
         }
         this.c++;
@@ -134,8 +137,8 @@ public class ListaDoble {
                 } else {
                     Nodo temp = inicio;
                     int c = 0;
-                    while (c <= (p - 1)) {
-                        temp = temp.getSiguiente();
+                    while (c <= p) {
+                        temp = temp.getPrevio();
                         c++;
                     }
                     // ya estoy en el nodo previo
