@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eva2_3_lista_doble;
+package eva2_5_stack;
 
 /**
  *
  * @author moviles
  */
-public class ListaDoble {
+public class MyStack {
 
     private Nodo inicio;
     private Nodo fin;
     private int c;
 
-
-    public ListaDoble() {
+    public MyStack() {
         this.inicio = null; // no hay nodos en la lista
         this.fin = null;
         this.c = 0;
@@ -61,12 +60,33 @@ public class ListaDoble {
 
     public int size() {
         /*int c = 0;
-        Nodo temp = inicio;
-        while (temp != null) {
-            c++;
-            temp = temp.getSiguiente();
-        }*/
+         Nodo temp = inicio;
+         while (temp != null) {
+         c++;
+         temp = temp.getSiguiente();
+         }*/
         return this.c;
+    }
+
+    public Integer peek() {
+        // verificar si la lista esta vacia
+        // si no esta vacia, regresa el valor
+        if (empty()) {
+            return null;
+        } else {
+            int v = inicio.getValor();
+            return v;
+        }
+    }
+
+    public Integer poll() throws Exception {
+        if (empty()) {
+            return null;
+        } else {
+            int v = inicio.getValor();
+            deleteIn(0);
+            return v;
+        }
     }
 
     public void addIn(int valor, int p) throws Exception {
@@ -102,10 +122,12 @@ public class ListaDoble {
         this.c++;
     }
 
-    public void empty() {
-        inicio = null;
-        fin = null;
-        c = 0;
+    public boolean empty() {
+        if (inicio == null) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
     // if we delete the last node, we need to move the end node
@@ -137,15 +159,13 @@ public class ListaDoble {
                 } else {
                     Nodo temp = inicio;
                     int c = 0;
-                    while (c < p) {
-                        temp = temp.getSiguiente();
+                    while (c <= p) {
+                        temp = temp.getPrevio();
                         c++;
                     }
                     // ya estoy en el nodo previo
                     Nodo next_obj = temp.getSiguiente();
-                    Nodo prev_obj = temp.getPrevio();
                     temp.setSiguiente(next_obj.getSiguiente());
-                    temp.setPrevio(prev_obj.getPrevio());
                     if (p == (t - 1)) {
                         fin = temp;
                     }

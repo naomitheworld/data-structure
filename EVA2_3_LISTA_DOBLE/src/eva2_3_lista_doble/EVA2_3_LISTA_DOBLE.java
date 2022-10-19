@@ -30,6 +30,13 @@ public class EVA2_3_LISTA_DOBLE {
             Logger.getLogger(null, null);
         }
         listaDoble.imprimir();
+        
+        try{
+            listaDoble.deleteIn(2);
+        }catch(Exception e){
+            
+        }
+        listaDoble.imprimir();
     }
     
 }
