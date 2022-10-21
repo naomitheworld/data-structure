@@ -68,23 +68,27 @@ public class MyStack {
         return this.c;
     }
 
+    public void push(int valor){
+        add(valor);
+    }
+    
     public Integer peek() {
         // verificar si la lista esta vacia
         // si no esta vacia, regresa el valor
         if (empty()) {
             return null;
         } else {
-            int v = inicio.getValor();
-            return v;
+            return fin.getValor();
         }
     }
-
-    public Integer poll() throws Exception {
+    
+    public Integer pop() throws Exception {
         if (empty()) {
             return null;
         } else {
-            int v = inicio.getValor();
-            deleteIn(0);
+            int v = fin.getValor();
+            //borra el nodo en la cima de la pila
+            deleteIn(size() - 1);
             return v;
         }
     }
@@ -163,11 +167,13 @@ public class MyStack {
                         temp = temp.getPrevio();
                         c++;
                     }
-                    // ya estoy en el nodo previo
                     Nodo next_obj = temp.getSiguiente();
-                    temp.setSiguiente(next_obj.getSiguiente());
+                    Nodo prev_obj = temp.getPrevio();
+                    prev_obj.setSiguiente(prev_obj);
                     if (p == (t - 1)) {
-                        fin = temp;
+                        fin = prev_obj;
+                    }else{
+                        next_obj.setPrevio(prev_obj);
                     }
                 }
                 this.c--;

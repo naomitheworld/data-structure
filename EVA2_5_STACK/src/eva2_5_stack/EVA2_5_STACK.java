@@ -16,6 +16,19 @@ public class EVA2_5_STACK {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        MyStack myStack = new MyStack();
+        myStack.push(10);
+        myStack.push(20);
+        myStack.push(30);
+        myStack.push(40);
+        myStack.imprimir();
+        System.out.println("cima de la pila: " + myStack.peek());
+        myStack.imprimir();
+        try{
+        System.out.println("cima de la pila: " + myStack.pop());
+        }catch(Exception e){
+        }
+        myStack.imprimir();
     }
     
 }

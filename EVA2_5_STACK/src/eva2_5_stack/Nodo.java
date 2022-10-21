@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eva2_4_queue;
+package eva2_5_stack;
 
 /**
  *

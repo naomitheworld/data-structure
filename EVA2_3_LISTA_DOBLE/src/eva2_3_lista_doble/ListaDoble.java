@@ -137,17 +137,18 @@ public class ListaDoble {
                 } else {
                     Nodo temp = inicio;
                     int c = 0;
-                    while (c < p) {
+                    while (c < (p-1)) {
                         temp = temp.getSiguiente();
                         c++;
                     }
                     // ya estoy en el nodo previo
                     Nodo next_obj = temp.getSiguiente();
                     Nodo prev_obj = temp.getPrevio();
-                    temp.setSiguiente(next_obj.getSiguiente());
-                    temp.setPrevio(prev_obj.getPrevio());
+                    prev_obj.setSiguiente(prev_obj);
                     if (p == (t - 1)) {
-                        fin = temp;
+                        fin = prev_obj;
+                    }else{
+                        next_obj.setPrevio(prev_obj);
                     }
                 }
                 this.c--;
