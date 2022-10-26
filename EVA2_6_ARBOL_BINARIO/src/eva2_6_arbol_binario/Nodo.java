@@ -17,8 +17,8 @@ public class Nodo {
 
     public Nodo(int valor, Nodo derecha, Nodo izquierda) {
         this.valor = valor;
-        this.derecha = derecha;
-        this.izquierda = izquierda;
+        this.derecha = null;
+        this.izquierda = null;
     }
 
     public Nodo(int valor) {
